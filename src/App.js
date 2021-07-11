@@ -2,11 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const API_KEY = process.env.local.REACT_APP_SPOTIFY_API_KEY;
+
   return (
     <div className="App">
-
-      
-
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
