@@ -1,27 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  const API_KEY = process.env.local.REACT_APP_SPOTIFY_API_KEY;
+// import axios from 'axios';
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: []
+    };
+  }
+
+  componentDidMount() {
+
+    fetch("https://gist.githubusercontent.com/aryapradipta9/e6492383477803b233916e01f36d5465/raw/66942c739d66d3774303f84071696aa865a07077/single-sample.json")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            data: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  render() {
+    const { error, isLoaded, data } = this.state;
+    console.log(data)
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <div>
+          <img src={data.album.images[0].url} alt="" />
+          <p>Track Title : {data.album.name}</p>
+          <p>Artist : {data.album.artists[0].name}</p>
+          <p>Album : {data.name}</p>
+          <button id="submit-button" type="submit">Select</button>
+        </div>
+      );
+    }
+  }
 }
 
 export default App;
