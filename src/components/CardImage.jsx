@@ -1,5 +1,7 @@
+import './style.css';
+
 export default function CardImage({image}) {
   return (
-      <img src={image} alt="gambar" />
+      <img className="image" src={image} alt="gambar" />
   )
 }

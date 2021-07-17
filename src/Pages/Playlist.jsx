@@ -3,6 +3,7 @@ import data from '../data/data';
 import CardDetail from '../components/CardDetail';
 import CardImage from '../components/CardImage';
 
+
 export default function PlaylistCard() {
     const playlist = data.map((e) => {
         return (
