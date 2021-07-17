@@ -6,7 +6,7 @@ import PlaylistCard from './Pages/Playlist';
 export default function App() {
   return (
     <div className="App" >
-      <PlaylistCard className="playlist" />
+      <PlaylistCard />
     </div>
     
   )
