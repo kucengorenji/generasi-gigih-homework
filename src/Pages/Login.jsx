@@ -15,6 +15,7 @@ export default function Login() {
     const [token, setToken] = useState("");
     const [search, setSearch] = useState("");
     const [datas, setDatas] = useState([]);
+    const [isToggled, setToggled] = useState(false);
 
     const handleLogin = () => {
         window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAMS}&response_type=token&show_dialog=true`
@@ -40,7 +41,7 @@ export default function Login() {
         }
     }, []);
 
-    async function HandleSearch() {
+    const handleSearch = async () => {
 		try {
 			let url =
 				"https://api.spotify.com/v1/search?q=" + search + "&type=track,artist";
@@ -59,30 +60,29 @@ export default function Login() {
 			console.log(datas);
 		}
 	}
+    
+    const changeText = () => {
+        setToggled(!isToggled);
+    };
+
 
     return (
         <div>
-            {/* login button */}
             <div>
                 <button onClick={handleLogin} className="login" type="submit">Log In</button>
             </div>
-
-            {/* take input */}
             <div>
                 <input
-                onChange={(e) => {
-                    setSearch(e.target.value);
-                }}
-                value={search}
+                    onChange={(event) => {
+                        setSearch(event.target.value);
+                    }}
+                    value={search}
                 />
+                <button onClick={handleSearch}>
+                    Search
+                </button>
             </div>
 
-            {/* input button */}
-            <button onClick={HandleSearch}>
-                Search
-            </button>
-
-            {/* search result */}
             <div className="searchResult">
                 {datas.map((data, index) => {
                     return (
@@ -92,6 +92,9 @@ export default function Login() {
                         <p>No: {index + 1}</p>
                         <p>album: {data.album.name}</p>
                         <p>Release Date: {data.album.release_date}</p>
+                        {/* button */}
+                        <button onClick={() => changeText()} >{isToggled ? "SELECTED" : "NOT SELECTED"}</button>
+                        
                     </div>
                     );
                 })}
