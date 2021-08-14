@@ -1,0 +1,29 @@
+.login {
+    width: 200px;
+    padding: 50px;
+    color: black;
+    background-color: white;
+    margin: 100px auto;
+}
+
+.searchResult {
+    align-items: center;
+    margin: 20px;
+    flex-flow: column;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardList {
+    margin: 20px;
+    width: 500px;
+    height: 150px;
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: row;
+}
+
+.cardList img {
+    width: 150px;
+}
