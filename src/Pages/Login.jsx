@@ -4,7 +4,7 @@ import './Login.css';
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = " https://accounts.spotify.com/authorize";
-const REDIRECT_URL_AFTER_LOGIN = "https://generasi-gigih-homework-theta.vercel.app/";
+const REDIRECT_URL_AFTER_LOGIN = process.env.REACT_APP_BASE_URL;
 const SPACE_DELIMITER = "%20";
 const SCOPE = ["playlist-modify-private"];
 const SCOPES_URL_PARAMS =   SCOPE.join(SPACE_DELIMITER);
